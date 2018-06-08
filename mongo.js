@@ -1,10 +1,12 @@
 
 const mongoose = require('mongoose')
 
-// korvaa url oman tietokantasi urlilla. ethän laita salasanaa Gothubiin!
-const url = 'mongodb://demoUser:DEMOpassw0rd@ds247430.mlab.com:47430/fullstack_phonebook'
+if ( process.env.NODE_ENV !== 'production' ) {
+    require('dotenv').config()
+  }
+  
 
-
+const url = process.env.MONGODB_URI
 mongoose.connect(url)
 
 const Person = mongoose.model('Person', {
